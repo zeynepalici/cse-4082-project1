@@ -45,6 +45,7 @@ class GraphSearch:
             self.path.append([node_row, node_col])
 
             if self.grid[node_row][node_col].status == "G":
+                self.cost += 1
                 return "Goal"
 
             # if the state is start state, start the path from beginning.
