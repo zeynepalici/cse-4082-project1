@@ -28,16 +28,16 @@ class GraphSearch:
         for [i, j] in self.exploredSet:
             if i == row and j == col:
                 return False
-        for [i, j] in self.strategy.frontier:
+        for [i, j] in self.strategy.getAllFrontier():
             if i == row and j == col:
                 return False
         return True
 
     def search(self):
-        self.strategy.frontier.append(self.startState)
+        self.strategy.append(self.cost, self.startState)
 
         while True:
-            if len(self.strategy.frontier) == 0:
+            if self.strategy.getLengthOfFrontier() == 0:
                 return "Failure"
 
             node_row, node_col = self.strategy.operate()
@@ -64,4 +64,4 @@ class GraphSearch:
 
             for [row, col] in expandedNodes:
                 if self.checkInNotFrontierOrExploredSet(row, col):
-                    self.strategy.frontier.append([row, col])
+                    self.strategy.append(self.cost, [row, col])

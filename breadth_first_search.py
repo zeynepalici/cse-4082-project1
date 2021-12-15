@@ -8,3 +8,12 @@ class BFS:
     def operate(self):
         node = self.frontier.pop()
         return node
+
+    def append(self, cost, node):
+        self.frontier.append(node)
+
+    def getLengthOfFrontier(self):
+        return len(self.frontier)
+
+    def getAllFrontier(self):
+        return list(self.frontier)
