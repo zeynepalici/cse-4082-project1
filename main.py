@@ -6,7 +6,7 @@ if __name__ == "__main__":
     grid = [[Node("S", False, False, False, False), Node("N", True, False, False, False),
              Node("N", False, True, False, False), Node("N", False, False, False, True),
              Node("N", False, False, False, False), Node("N", False, False, False, True),
-             Node("N", False, False, False, True), Node("N", False, False, False, False)],
+             Node("S", False, False, False, True), Node("N", False, False, False, False)],
             [Node("N", True, False, False, False), Node("N", False, True, False, True),
              Node("N", False, False, False, True), Node("T", True, False, True, False),
              Node("N", True, True, False, False), Node("N", False, True, True, False),
@@ -17,6 +17,7 @@ if __name__ == "__main__":
     graphSearch = GraphSearch(strategy, grid, startState)
 
     message = graphSearch.search()
-    print(message + "\n")
+    print(message)
     print(graphSearch.cost)
     print(graphSearch.path)
+    print(graphSearch.exploredSet)

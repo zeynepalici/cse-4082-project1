@@ -5,6 +5,7 @@ class GraphSearch:
         self.startState = startState
         self.path = []
         self.cost = 0
+        self.exploredSet = []
 
     def expandNode(self, row, col):
         expandedNodes = []
@@ -23,8 +24,8 @@ class GraphSearch:
 
         return expandedNodes
 
-    def checkInNotFrontierOrExploredSet(self, row, col, exploredSet):
-        for [i, j] in exploredSet:
+    def checkInNotFrontierOrExploredSet(self, row, col):
+        for [i, j] in self.exploredSet:
             if i == row and j == col:
                 return False
         for [i, j] in self.strategy.frontier:
@@ -33,7 +34,6 @@ class GraphSearch:
         return True
 
     def search(self):
-        exploredSet = []
         self.strategy.frontier.append(self.startState)
 
         while True:
@@ -41,7 +41,7 @@ class GraphSearch:
                 return "Failure"
 
             node_row, node_col = self.strategy.operate()
-            exploredSet.append([node_row, node_col])
+            self.exploredSet.append([node_row, node_col])
             self.path.append([node_row, node_col])
 
             if self.grid[node_row][node_col].status == "G":
@@ -62,5 +62,5 @@ class GraphSearch:
             expandedNodes = self.expandNode(node_row, node_col)
 
             for [row, col] in expandedNodes:
-                if self.checkInNotFrontierOrExploredSet(row, col, exploredSet):
+                if self.checkInNotFrontierOrExploredSet(row, col):
                     self.strategy.frontier.append([row, col])
