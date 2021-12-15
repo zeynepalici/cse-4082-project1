@@ -13,9 +13,10 @@ if __name__ == "__main__":
              Node("N", False, False, True, False), Node("G", False, False, False, False)]]
 
     startState = [0, 0]
-
     strategy = BFS()
-
     graphSearch = GraphSearch(strategy, grid, startState)
+
     message = graphSearch.search()
-    print(message)
+    print(message + "\n")
+    print(graphSearch.cost)
+    print(graphSearch.path)

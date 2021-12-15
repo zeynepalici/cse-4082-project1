@@ -3,6 +3,8 @@ class GraphSearch:
         self.strategy = strategy
         self.grid = grid
         self.startState = startState
+        self.path = []
+        self.cost = 0
 
     def expandNode(self, row, col):
         expandedNodes = []
@@ -40,8 +42,21 @@ class GraphSearch:
 
             node_row, node_col = self.strategy.operate()
             exploredSet.append([node_row, node_col])
+            self.path.append([node_row, node_col])
+
             if self.grid[node_row][node_col].status == "G":
                 return "Goal"
+
+            # if the state is start state, start the path from beginning.
+            if self.grid[node_row][node_col].status == "S":
+                self.cost = 0
+                self.path = [[node_row, node_col]]
+
+            if self.grid[node_row][node_col].status == "N":
+                self.cost += 1
+
+            if self.grid[node_row][node_col].status == "T":
+                self.cost -= 8
 
             # expand the node and add resulting nodes to the frontier
             expandedNodes = self.expandNode(node_row, node_col)
