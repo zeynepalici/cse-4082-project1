@@ -9,8 +9,8 @@ class A_StarSearch:
         node = self.frontier.get()
         return node
 
-    def append(self, cost, node: list):
-        self.frontier.put(node, self.getHeuristicValue(node) + cost)
+    def append(self, node):
+        self.frontier.put(node, self.getHeuristicValue(node) + node.cost)
 
     def getLengthOfFrontier(self):
         return self.frontier.qsize()

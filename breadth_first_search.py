@@ -9,7 +9,7 @@ class BFS:
         node = self.frontier.pop()
         return node
 
-    def append(self, cost, node):
+    def append(self, node):
         self.frontier.append(node)
 
     def getLengthOfFrontier(self):
