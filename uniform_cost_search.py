@@ -7,10 +7,10 @@ class UniformCostSearch:
 
     def operate(self):
         node = self.frontier.get()
-        return node
+        return node[1]
 
-    def append(self, cost, node):
-        self.frontier.put(node, cost)
+    def append(self, node):
+        self.frontier.put((node.cost, node))
 
     def getLengthOfFrontier(self):
         return self.frontier.qsize()

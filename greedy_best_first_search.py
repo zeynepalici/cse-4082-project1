@@ -9,7 +9,7 @@ class GreedyBestFirstSearch:
         node = self.frontier.get()
         return node
 
-    def append(self, cost, node: list):
+    def append(self, node):
         self.frontier.put(node, self.getHeuristicValue(node))
 
     def getLengthOfFrontier(self):

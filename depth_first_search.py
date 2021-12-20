@@ -9,7 +9,7 @@ class DFS:
         node = self.frontier.get()
         return node
 
-    def append(self, cost, node):
+    def append(self, node):
         self.frontier.put(node)
 
     def getLengthOfFrontier(self):
