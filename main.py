@@ -7,11 +7,11 @@ from IO import IO
 
 if __name__ == "__main__":
 
-    grid = IO().readTheMazeInput("input.json")
+    grid, goalNodes = IO().readTheMazeInput("input.json")
 
     startState = [0, 0]
     strategy = BFS()
-    graphSearch = GraphSearch(strategy, grid.copy(), startState)
+    graphSearch = GraphSearch(strategy, grid.copy(), startState, goalNodes)
 
     message = graphSearch.search()
     print(message)
@@ -22,10 +22,11 @@ if __name__ == "__main__":
     print()
 
     strategy2 = UniformCostSearch()
-    graphSearch2 = GraphSearch(strategy2, grid.copy(), startState)
+    graphSearch2 = GraphSearch(strategy2, grid.copy(), startState, goalNodes)
     message2 = graphSearch2.search()
     print(message2)
     print(graphSearch2.cost)
     graphSearch2.printPath(graphSearch2.lastNode)
     print()
     graphSearch2.printExploredSet()
+    print(len(graphSearch2.exploredSet))

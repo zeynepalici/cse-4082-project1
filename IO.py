@@ -9,6 +9,7 @@ class IO:
         data = json.load(f)
         nodes = data["nodes"]
         horizontal = data["horizontal"]
+        goalSquares = []
         nodeList = []
         nodeRow = []
         j = 0
@@ -18,9 +19,11 @@ class IO:
                                 , node["westWall"], node["northWall"]
                                 , node["southWall"], j, i))
             i += 1
+            if nodeRow[-1].status == 'G':
+                goalSquares.append(nodeRow[-1])
             if i == horizontal:
                 nodeList.append(nodeRow.copy())
                 nodeRow.clear()
                 i = 0
                 j += 1
-        return nodeList
+        return nodeList, goalSquares

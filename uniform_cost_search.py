@@ -16,4 +16,8 @@ class UniformCostSearch:
         return self.frontier.qsize()
 
     def getAllFrontier(self):
-        return list(self.frontier.queue)
+        retList = []
+        priorityQIterator = list(self.frontier.queue)
+        for frtNode in priorityQIterator:
+            retList.append(frtNode[1])
+        return retList

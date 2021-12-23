@@ -10,13 +10,23 @@ class GreedyBestFirstSearch:
         return node
 
     def append(self, node):
-        self.frontier.put(node, self.getHeuristicValue(node))
+        self.frontier.put(node, node.heuristicCost)
 
     def getLengthOfFrontier(self):
         return self.frontier.qsize()
 
     def getAllFrontier(self):
-        return list(self.frontier.queue)
+        retList = []
+        priorityQIterator = list(self.frontier.queue)
+        for frtNode in priorityQIterator:
+            retList.append(frtNode[1])
+        return retList
 
-    def getHeuristicValue(self, node):
-        pass
+
+def calculateHeuristicValues(self, grid, goalSquares):
+    for node in grid:
+        for goalNode in goalSquares:
+            total = abs(node.verticalIndex - goalNode.verticalIndex) + abs(node.horizontalIndex - goalNode
+                                                                           .horizontalIndex)
+            if total < node.heuristicCost:
+                node.heuristicCost = total

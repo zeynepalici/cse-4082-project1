@@ -1,11 +1,16 @@
+from A_star_search import A_StarSearch
+from greedy_best_first_search import GreedyBestFirstSearch
+
+
 class GraphSearch:
-    def __init__(self, strategy, grid, startState):
+    def __init__(self, strategy, grid, startState, goalNodes):
         self.strategy = strategy
         self.grid = grid
         self.startState = startState
         self.cost = 0
         self.exploredSet = []
         self.lastNode = None
+        self.goalNodes = goalNodes
 
     def expandNode(self, curr_node):
         expandedNodes = []
@@ -33,6 +38,9 @@ class GraphSearch:
         return True
 
     def search(self):
+        if isinstance(self.strategy, (A_StarSearch, GreedyBestFirstSearch)):
+            self.strategy.calculateHeuristicValues(self.grid, self.goalNodes)
+
         self.strategy.append(self.grid[self.startState[0]][self.startState[1]])
 
         while True:
@@ -59,7 +67,7 @@ class GraphSearch:
             for nextNode in expandedNodes:
                 if self.checkInNotFrontierOrExploredSet(nextNode):
                     if nextNode.status == "T":
-                        nextNode.cost = curr_node.cost - 8
+                        nextNode.cost = curr_node.cost + 10
                     else:
                         nextNode.cost = curr_node.cost + 1
                     nextNode.successor = curr_node
@@ -68,10 +76,10 @@ class GraphSearch:
     def printPath(self, node):
         if node.successor is not None:
             self.printPath(node.successor)
-            print("-(" + str(node.verticalIndex) + "," + str(node.horizontalIndex) + ")", end="")
+            print("-(" + str(node.verticalIndex + 1) + "," + str(node.horizontalIndex + 1) + ")", end="")
         else:
-            print("(" + str(node.verticalIndex) + "," + str(node.horizontalIndex) + ")", end="")
+            print("(" + str(node.verticalIndex + 1) + "," + str(node.horizontalIndex + 1) + ")", end="")
 
     def printExploredSet(self):
         for node in self.exploredSet:
-            print("(" + str(node.verticalIndex) + "," + str(node.horizontalIndex) + ")", end=" ")
+            print("(" + str(node.verticalIndex + 1) + "," + str(node.horizontalIndex + 1) + ")", end=" ")
