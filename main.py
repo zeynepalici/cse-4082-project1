@@ -4,13 +4,13 @@ from depth_first_search import DFS
 from node import Node
 from graph_search import GraphSearch
 from IO import IO
+from iterative_deepening_search import IterativeDeepeningSearch
 
 if __name__ == "__main__":
-
     grid, goalNodes = IO().readTheMazeInput("input.json")
 
     startState = [0, 0]
-    strategy = BFS()
+    strategy = IterativeDeepeningSearch()
     graphSearch = GraphSearch(strategy, grid.copy(), startState, goalNodes)
 
     message = graphSearch.search()

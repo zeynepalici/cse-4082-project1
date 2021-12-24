@@ -1,5 +1,6 @@
 from A_star_search import A_StarSearch
 from greedy_best_first_search import GreedyBestFirstSearch
+from iterative_deepening_search import IterativeDeepeningSearch
 
 
 class GraphSearch:
@@ -11,6 +12,8 @@ class GraphSearch:
         self.exploredSet = []
         self.lastNode = None
         self.goalNodes = goalNodes
+        self.maxDepth = 0
+        self.currentDepth = 0
 
     def expandNode(self, curr_node):
         expandedNodes = []
@@ -38,6 +41,7 @@ class GraphSearch:
         return True
 
     def search(self):
+
         if isinstance(self.strategy, (A_StarSearch, GreedyBestFirstSearch)):
             self.strategy.calculateHeuristicValues(self.grid, self.goalNodes)
 
@@ -64,14 +68,21 @@ class GraphSearch:
             # expand the node and add resulting nodes to the frontier
             expandedNodes = self.expandNode(curr_node)
 
-            for nextNode in expandedNodes:
-                if self.checkInNotFrontierOrExploredSet(nextNode):
-                    if nextNode.status == "T":
-                        nextNode.cost = curr_node.cost + 10
-                    else:
-                        nextNode.cost = curr_node.cost + 1
-                    nextNode.successor = curr_node
-                    self.strategy.append(nextNode)
+            IDS = isinstance(self.strategy, IterativeDeepeningSearch)
+            if not IDS or (IDS and self.currentDepth <= self.maxDepth):
+                for nextNode in expandedNodes:
+                    if self.checkInNotFrontierOrExploredSet(nextNode):
+                        if nextNode.status == "T":
+                            nextNode.cost = curr_node.cost + 10
+                        else:
+                            nextNode.cost = curr_node.cost + 1
+                        nextNode.successor = curr_node
+                        self.strategy.append(nextNode)
+                self.currentDepth += 1
+            else:
+                self.currentDepth = 0
+                self.maxDepth += 1
+                return self.search()
 
     def printPath(self, node):
         if node.successor is not None:
