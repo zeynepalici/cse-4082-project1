@@ -18,7 +18,7 @@ if __name__ == "__main__":
     print(graphSearch.cost)
     graphSearch.printPath(graphSearch.lastNode)
     print()
-    graphSearch.printExploredSet()
+    graphSearch.printIterativeDeepeningExploredSet()
     print()
 
     strategy2 = UniformCostSearch()

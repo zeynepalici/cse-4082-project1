@@ -1,6 +1,7 @@
 from A_star_search import A_StarSearch
 from greedy_best_first_search import GreedyBestFirstSearch
 from iterative_deepening_search import IterativeDeepeningSearch
+from queue import LifoQueue
 
 
 class GraphSearch:
@@ -14,6 +15,7 @@ class GraphSearch:
         self.goalNodes = goalNodes
         self.maxDepth = 0
         self.currentDepth = 0
+        self.IDS_exploredSet = []
 
     def expandNode(self, curr_node):
         expandedNodes = []
@@ -55,6 +57,7 @@ class GraphSearch:
             self.exploredSet.append(curr_node)
 
             if curr_node.status == "G":
+                self.IDS_exploredSet.append(curr_node)
                 self.cost = curr_node.cost
                 self.lastNode = curr_node
                 return "Goal"
@@ -80,6 +83,12 @@ class GraphSearch:
                         self.strategy.append(nextNode)
                 self.currentDepth += 1
             else:
+                self.IDS_exploredSet = self.IDS_exploredSet + self.exploredSet
+                self.strategy.frontier = LifoQueue()
+                self.cost = 0
+                self.exploredSet = []
+                self.lastNode = None
+
                 self.currentDepth = 0
                 self.maxDepth += 1
                 return self.search()
@@ -93,4 +102,8 @@ class GraphSearch:
 
     def printExploredSet(self):
         for node in self.exploredSet:
+            print("(" + str(node.verticalIndex + 1) + "," + str(node.horizontalIndex + 1) + ")", end=" ")
+
+    def printIterativeDeepeningExploredSet(self):
+        for node in self.IDS_exploredSet:
             print("(" + str(node.verticalIndex + 1) + "," + str(node.horizontalIndex + 1) + ")", end=" ")
