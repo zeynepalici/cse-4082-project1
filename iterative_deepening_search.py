@@ -4,6 +4,7 @@ from queue import LifoQueue
 class IterativeDeepeningSearch:
     def __init__(self):
         self.frontier = LifoQueue()
+        self.maxLenOfFrontier = 0
 
     def operate(self):
         node = self.frontier.get()
@@ -11,6 +12,8 @@ class IterativeDeepeningSearch:
 
     def append(self, node):
         self.frontier.put(node)
+        if self.getLengthOfFrontier() > self.maxLenOfFrontier:
+            self.maxLenOfFrontier = self.getLengthOfFrontier()
 
     def getLengthOfFrontier(self):
         return self.frontier.qsize()

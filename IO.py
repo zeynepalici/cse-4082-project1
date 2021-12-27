@@ -5,13 +5,14 @@ class IO:
 
     def readTheMazeInput(self, fileName):
 
-        f =open(fileName)
+        f = open(fileName)
         data = json.load(f)
         nodes = data["nodes"]
         horizontal = data["horizontal"]
         goalSquares = []
         nodeList = []
         nodeRow = []
+        startNode = []
         j = 0
         i = 0
         for node in nodes:
@@ -19,6 +20,8 @@ class IO:
                                 , node["westWall"], node["northWall"]
                                 , node["southWall"], j, i))
             i += 1
+            if nodeRow[-1].status == 'S':
+                startNode = [nodeRow[-1].verticalIndex, nodeRow[-1].horizontalIndex]
             if nodeRow[-1].status == 'G':
                 goalSquares.append(nodeRow[-1])
             if i == horizontal:
@@ -26,4 +29,4 @@ class IO:
                 nodeRow.clear()
                 i = 0
                 j += 1
-        return nodeList, goalSquares
+        return nodeList, goalSquares, startNode

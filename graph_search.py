@@ -16,6 +16,7 @@ class GraphSearch:
         self.maxDepth = 0
         self.currentDepth = 0
         self.IDS_exploredSet = []
+        self.maxLenOfExploredSet = 0
 
     def expandNode(self, curr_node):
         expandedNodes = []
@@ -55,6 +56,8 @@ class GraphSearch:
 
             curr_node = self.strategy.operate()
             self.exploredSet.append(curr_node)
+            if len(self.exploredSet) > self.maxLenOfExploredSet:
+                self.maxLenOfExploredSet = len(self.exploredSet)
 
             if curr_node.status == "G":
                 self.IDS_exploredSet.append(curr_node)
@@ -86,6 +89,9 @@ class GraphSearch:
                 self.IDS_exploredSet = self.IDS_exploredSet + self.exploredSet
                 self.strategy.frontier = LifoQueue()
                 self.cost = 0
+                for row in self.grid:
+                    for node in row:
+                        node.successor = None
                 self.exploredSet = []
                 self.lastNode = None
 
@@ -96,14 +102,14 @@ class GraphSearch:
     def printPath(self, node):
         if node.successor is not None:
             self.printPath(node.successor)
-            print("-(" + str(node.verticalIndex + 1) + "," + str(node.horizontalIndex + 1) + ")", end="")
+            print("-(" + str(node.horizontalIndex + 1) + "," + str(node.verticalIndex + 1) + ")", end="")
         else:
-            print("(" + str(node.verticalIndex + 1) + "," + str(node.horizontalIndex + 1) + ")", end="")
+            print("(" + str(node.horizontalIndex + 1) + "," + str(node.verticalIndex + 1) + ")", end="")
 
     def printExploredSet(self):
         for node in self.exploredSet:
-            print("(" + str(node.verticalIndex + 1) + "," + str(node.horizontalIndex + 1) + ")", end=" ")
+            print("(" + str(node.horizontalIndex + 1) + "," + str(node.verticalIndex + 1) + ")", end=" ")
 
     def printIterativeDeepeningExploredSet(self):
         for node in self.IDS_exploredSet:
-            print("(" + str(node.verticalIndex + 1) + "," + str(node.horizontalIndex + 1) + ")", end=" ")
+            print("(" + str(node.horizontalIndex + 1) + "," + str(node.verticalIndex + 1) + ")", end=" ")
