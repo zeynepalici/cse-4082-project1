@@ -8,8 +8,8 @@ from IO import IO
 from iterative_deepening_search import IterativeDeepeningSearch
 
 
-def printOutputsOfGivenInput(filname):
-    grid, goalNodes, startState = IO().readTheMazeInput(filname)
+def printOutputsOfGivenInput(filename):
+    grid, goalNodes, startState = IO().readTheMazeInput(filename)
 
     print("DFS:")
     strategy1 = DFS()
@@ -52,7 +52,7 @@ def printOutputsOfGivenInput(filname):
     graphSearch4 = GraphSearch(strategy4, grid.copy(), startState, goalNodes)
     graphSearch4.search()
     print("Cost of the founded solution: " + str(graphSearch4.cost))
-    print("The number of expanded nodes: " + str(len(graphSearch4.IDS_exploredSet)))
+    print("The number of expanded nodes: " + str(len(graphSearch4.exploredSet)))
     print("The maximum size of the frontier: " + str(strategy4.maxLenOfFrontier))
     print("The maximum size of the explored set: " + str(graphSearch4.maxLenOfExploredSet))
     print("Solution path: ")
@@ -64,7 +64,7 @@ def printOutputsOfGivenInput(filname):
     graphSearch5 = GraphSearch(strategy5, grid.copy(), startState, goalNodes)
     graphSearch5.search()
     print("Cost of the founded solution: " + str(graphSearch5.cost))
-    print("The number of expanded nodes: " + str(len(graphSearch5.IDS_exploredSet)))
+    print("The number of expanded nodes: " + str(len(graphSearch5.exploredSet)))
     print("The maximum size of the frontier: " + str(strategy5.maxLenOfFrontier))
     print("The maximum size of the explored set: " + str(graphSearch5.maxLenOfExploredSet))
     print("Solution path: ")
@@ -76,7 +76,7 @@ def printOutputsOfGivenInput(filname):
     graphSearch6 = GraphSearch(strategy6, grid.copy(), startState, goalNodes)
     graphSearch6.search()
     print("Cost of the founded solution: " + str(graphSearch6.cost))
-    print("The number of expanded nodes: " + str(len(graphSearch6.IDS_exploredSet)))
+    print("The number of expanded nodes: " + str(len(graphSearch6.exploredSet)))
     print("The maximum size of the frontier: " + str(strategy6.maxLenOfFrontier))
     print("The maximum size of the explored set: " + str(graphSearch6.maxLenOfExploredSet))
     print("Solution path: ")
