@@ -1,0 +1,40 @@
+{
+  "horizontal": 5,
+  "nodes": [
+    {"status":"G", "eastWall": false, "westWall": true, "northWall": true, "southWall": false},
+    {"status":"N", "eastWall": false, "westWall": false, "northWall": true, "southWall": false},
+    {"status":"N", "eastWall": false, "westWall": false, "northWall": true, "southWall": true},
+    {"status":"N", "eastWall": false, "westWall": false, "northWall": true, "southWall": false},
+    {"status":"N", "eastWall": true, "westWall": false, "northWall": true, "southWall": true},
+
+    {"status":"N", "eastWall": true, "westWall": true, "northWall": false, "southWall": false},
+    {"status":"N", "eastWall": false, "westWall": true, "northWall": false, "southWall": false},
+    {"status":"T", "eastWall": false, "westWall": false, "northWall": true, "southWall": false},
+    {"status":"N", "eastWall": false, "westWall": false, "northWall": false, "southWall": false},
+    {"status":"N", "eastWall": true, "westWall": false, "northWall": true, "southWall": false},
+
+    {"status":"N", "eastWall": true, "westWall": true, "northWall": false, "southWall": false},
+    {"status":"N", "eastWall": false, "westWall": true, "northWall": false, "southWall": true},
+    {"status":"S", "eastWall": false, "westWall": false, "northWall": false, "southWall": false},
+    {"status":"N", "eastWall": true, "westWall": false, "northWall": false, "southWall": false},
+    {"status":"N", "eastWall": true, "westWall": true, "northWall": false, "southWall": false},
+
+    {"status":"N", "eastWall": false, "westWall": true, "northWall": false, "southWall": false},
+    {"status":"N", "eastWall": false, "westWall": false, "northWall": true, "southWall": false},
+    {"status":"N", "eastWall": false, "westWall": false, "northWall": false, "southWall": false},
+    {"status":"N", "eastWall": false, "westWall": false, "northWall": false, "southWall": false},
+    {"status":"N", "eastWall": true, "westWall": false, "northWall": false, "southWall": false},
+
+    {"status":"N", "eastWall": false, "westWall": true, "northWall": false, "southWall": false},
+    {"status":"N", "eastWall": false, "westWall": false, "northWall": false, "southWall": true},
+    {"status":"T", "eastWall": false, "westWall": false, "northWall": false, "southWall": false},
+    {"status":"T", "eastWall": false, "westWall": false, "northWall": false, "southWall": false},
+    {"status":"G", "eastWall": true, "westWall": false, "northWall": false, "southWall": false},
+
+    {"status":"N", "eastWall": true, "westWall": true, "northWall": false, "southWall": true},
+    {"status":"G", "eastWall": false, "westWall": true, "northWall": true, "southWall": true},
+    {"status":"N", "eastWall": false, "westWall": false, "northWall": false, "southWall": true},
+    {"status":"N", "eastWall": false, "westWall": false, "northWall": false, "southWall": true},
+    {"status":"N", "eastWall": true, "westWall": false, "northWall": false, "southWall": true}
+  ]
+}

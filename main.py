@@ -7,8 +7,9 @@ from graph_search import GraphSearch
 from IO import IO
 from iterative_deepening_search import IterativeDeepeningSearch
 
-if __name__ == "__main__":
-    grid, goalNodes, startState = IO().readTheMazeInput("input.json")
+
+def printOutputsOfGivenInput(filname):
+    grid, goalNodes, startState = IO().readTheMazeInput(filname)
 
     print("DFS:")
     strategy1 = DFS()
@@ -81,3 +82,12 @@ if __name__ == "__main__":
     print("Solution path: ")
     graphSearch6.printPath(graphSearch6.lastNode)
     print()
+
+
+if __name__ == "__main__":
+    print("GIVEN MAZE OUTPUTS")
+    printOutputsOfGivenInput('given_input.json')
+    print("-----------------------")
+    print("-----------------------")
+    print("CUSTOM MAZE OUTPUTS")
+    printOutputsOfGivenInput('custom_input.json')
