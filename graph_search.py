@@ -55,15 +55,16 @@ class GraphSearch:
                 return "Failure"
 
             curr_node = self.strategy.operate()
-            self.exploredSet.append(curr_node)
-            if len(self.exploredSet) > self.maxLenOfExploredSet:
-                self.maxLenOfExploredSet = len(self.exploredSet)
 
             if curr_node.status == "G":
                 self.IDS_exploredSet.append(curr_node)
                 self.cost = curr_node.cost
                 self.lastNode = curr_node
                 return "Goal"
+
+            self.exploredSet.append(curr_node)
+            if len(self.exploredSet) > self.maxLenOfExploredSet:
+                self.maxLenOfExploredSet = len(self.exploredSet)
 
             # if the state is start state, start the path from beginning.
             # this part may be unnecessary, i put in a comment for now - Furkan
