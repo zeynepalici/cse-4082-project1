@@ -1,4 +1,5 @@
 from A_star_search import A_StarSearch
+from depth_first_search import DFS
 from greedy_best_first_search import GreedyBestFirstSearch
 from iterative_deepening_search import IterativeDeepeningSearch
 from queue import LifoQueue
@@ -77,6 +78,8 @@ class GraphSearch:
 
             IDS = isinstance(self.strategy, IterativeDeepeningSearch)
             if not IDS or (IDS and self.currentDepth <= self.maxDepth):
+                if isinstance(self.strategy, DFS) or IDS:
+                    expandedNodes.reverse()
                 for nextNode in expandedNodes:
                     if self.checkInNotFrontierOrExploredSet(nextNode):
                         if nextNode.status == "T":
